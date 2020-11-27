@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@android:color/holo_orange_dark">
+
+
+    <ImageView
+        android:id="@+id/welcomeImage"
+        android:layout_width="280dp"
+        android:layout_height="277dp"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-4dp"
+        android:layout_marginBottom="-4dp"
+        android:src="@drawable/todolist06" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/welcomeImage"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="serif"
+        android:text="EasyDo"
+        android:layout_marginBottom="50dp"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="italic|bold" />
+
+
+</RelativeLayout>

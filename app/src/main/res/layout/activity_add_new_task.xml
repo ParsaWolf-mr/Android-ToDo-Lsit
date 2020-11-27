@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/newTask"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:hint="New Task"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@null"/>
+
+    <Button
+        android:id="@+id/speicherButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/newTask"
+        android:layout_alignParentEnd="true"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:text="@string/speicherbutton"
+        android:textColor="@android:color/black"/>
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:text="Delete"
+        android:textColor="@color/black"/>
+
+
+
+</RelativeLayout>
