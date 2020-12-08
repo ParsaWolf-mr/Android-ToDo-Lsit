@@ -4,18 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
+
 
 public class AddNewTask extends MainActivity{
 
     private EditText newTaskText;
     private Button saveButton, deleteButton;
-    static int number = 0;
+    private DataBankHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,8 @@ public class AddNewTask extends MainActivity{
                 }catch (Exception e){
                     // if failed the print an Error
                 }
-                DataBankHandler dataBankHandler = new DataBankHandler(AddNewTask.this);
-                boolean success = dataBankHandler.addOnDataBase(newTask);
+                db = new DataBankHandler(AddNewTask.this);
+                boolean success = db.addOnDataBase(newTask);
                 Toast.makeText(AddNewTask.this, "Success " + success , Toast.LENGTH_SHORT).show();
 
                 startActivity(intent);
@@ -53,7 +55,7 @@ public class AddNewTask extends MainActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddNewTask.this, MainActivity.class);
-
+                DataBankHandler dataBankHandler = new DataBankHandler(AddNewTask.this);
                 startActivity(intent);
             }
         });
@@ -69,11 +71,11 @@ public class AddNewTask extends MainActivity{
 
             @Override
             public void afterTextChanged(Editable s) {
-                number++;
                 saveButton.setEnabled(newTaskText.getText().length()>0);
                 deleteButton.setEnabled(newTaskText.getText().length()>0);
             }
         };
         newTaskText.addTextChangedListener(textWatcher);
     }
+
 }

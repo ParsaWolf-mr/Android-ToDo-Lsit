@@ -16,7 +16,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView listOfTasks;
-    private DataBankHandler db;
+    public DataBankHandler db;
     private ToDoHandler taskHandler;
     private List<TaskClass> tasksList;
     private FloatingActionButton floatingActionButton;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("EasyDo");
-        //getSupportActionBar().hide();
+
         tasksList = new ArrayList<>();
 
         db = new DataBankHandler(MainActivity.this);
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         listOfTasks = findViewById(R.id.listOfTasks);
         listOfTasks.setLayoutManager(new LinearLayoutManager(this));
-        taskHandler = new ToDoHandler(this);
+        taskHandler = new ToDoHandler(db, this);
         listOfTasks.setAdapter(taskHandler);
         floatingActionButton = findViewById(R.id.floatingActionButton);
 

@@ -10,21 +10,29 @@
     android:layout_marginHorizontal="20dp"
     android:layout_marginVertical="10dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="6dp">
+        android:padding="6dp"
+        android:orientation="horizontal"
+        tool:ignore="ExtraText">
 
         <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:buttonTint="@android:color/holo_orange_dark"
+            android:buttonTint="@android:color/holo_orange_dark" />
+
+        <TextView
+            android:id="@+id/task_layout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="serif"
             android:textStyle="italic|bold"
             android:paddingStart="10dp"
             android:textSize="16sp"
-            tool:text="Tasks" />
-    </RelativeLayout>
+            tool:text="Tasks"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

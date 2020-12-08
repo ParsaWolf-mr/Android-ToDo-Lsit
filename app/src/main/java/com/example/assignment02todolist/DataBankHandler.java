@@ -14,15 +14,16 @@ import java.util.List;
 
 public class DataBankHandler  extends SQLiteOpenHelper {
 
-
-    public static final String TODO_TABLE = "TODO_TABLE";
-    public static final String ID = "ID";
-    public static final String TASK = "TASK";
-    public static final String STATUS = "STATUS";
+    private SQLiteDatabase db;
+    private static final String TODO_TABLE = "TODO_TABLE";
+    private static final String ID = "ID";
+    private static final String TASK = "TASK";
+    private static final String STATUS = "STATUS";
 
     public DataBankHandler(@Nullable Context context) {
         super(context, TODO_TABLE, null, 1);
     }
+
 
     @Override  // create Table and execute the query
     public void onCreate(SQLiteDatabase db) {
@@ -37,11 +38,11 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     }
 
 
-    public boolean addOnDataBase(TaskClass toDoDesign){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public boolean addOnDataBase(TaskClass newTask){
+        getWriteAbel();
         ContentValues row = new ContentValues();
 
-        row.put(TASK , toDoDesign.getTask());
+        row.put(TASK , newTask.getTask());
         row.put(STATUS, 0);
         long insert = db.insert(TODO_TABLE, null,row);
         if (insert == 1){
@@ -50,18 +51,28 @@ public class DataBankHandler  extends SQLiteOpenHelper {
             return true;
         }
     }
+    public void getWriteAbel(){
+        db = this.getWritableDatabase();
+    }
 
-    public void updateStauts(int id, int status){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void getReadAble(){
+        db = this.getReadableDatabase();
+    }
+
+    public void updateStauts(int id, boolean status){
+        getWriteAbel();;
 
         ContentValues row = new ContentValues();
         row.put(STATUS, status);
-        db.update(TODO_TABLE, row, ID+ "=?", new String[] {String.valueOf(id)});
+        /*String updateQuery = "UPDATE TABLE " + TODO_TABLE + " SET "
+                + STATUS + " = " + " true " + " WHERE " + ID + " = " + id;
+        Cursor cursor = db.rawQuery(updateQuery, null);  */
+        db.update(TODO_TABLE, row, ID + "=?", new String[]{String.valueOf(id)});
     }
 
     public boolean deleteTask (int id ){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TODO_TABLE + ID + " = " + id;
+        getWriteAbel();
+        String query = "DELETE FROM " + TODO_TABLE + " WHERE "+ ID+ " = " + id;
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()){
             return true;
@@ -71,18 +82,19 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     }
 
     @SuppressLint("Recycle")
-    public void deleteCheackedTasks(){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void deleteCheckedTasks(){
+        getWriteAbel();
         String query = "DELETE FROM " + TODO_TABLE +" WHERE " + STATUS + " IS " + 1 ;
         db.rawQuery(query, null);
     }
 
     public List<TaskClass> getEveryTask(){
-        deleteCheackedTasks();
-        SQLiteDatabase db = this.getReadableDatabase();
+        deleteCheckedTasks();
+        getReadAble();
         List<TaskClass> listOfTasks = new ArrayList<>();
 
-        String query = "SELECT * FROM " +TODO_TABLE;
+        String query = "SELECT * FROM " +TODO_TABLE +
+                " ORDER BY "+ STATUS + " DESC ";
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()){
@@ -101,7 +113,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     }
 
     public void updateTask(int id, String task){
-        SQLiteDatabase db = this.getWritableDatabase();
+        getWriteAbel();
 
         ContentValues row = new ContentValues();
         row.put(TASK, task );

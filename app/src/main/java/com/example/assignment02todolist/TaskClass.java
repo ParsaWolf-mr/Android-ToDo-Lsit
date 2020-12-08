@@ -22,6 +22,8 @@ public class TaskClass {
         return task;
     }
 
+    public int getId() {return id;}
+
     public void setTask(String task) {
         this.task = task;
     }
