@@ -55,7 +55,8 @@ public class AddNewTask extends MainActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddNewTask.this, MainActivity.class);
-                DataBankHandler dataBankHandler = new DataBankHandler(AddNewTask.this);
+                db = new DataBankHandler(AddNewTask.this);
+                // ToDo
                 startActivity(intent);
             }
         });

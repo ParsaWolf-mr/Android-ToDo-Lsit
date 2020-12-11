@@ -45,6 +45,8 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     db.updateStauts(item.getId(), true);
+                }else{
+                    db.updateStauts(item.getId(), false);
                 }
             }
         });
