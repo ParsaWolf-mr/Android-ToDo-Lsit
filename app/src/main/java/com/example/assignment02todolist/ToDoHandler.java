@@ -38,8 +38,9 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         db.getWriteAbel();
         TaskClass item = todoList.get(position);
-        holder.task.setText(item.getTask());
-        holder.task.setChecked(item.getStatus());    // I think I should Update the status  here
+        holder.taskText.setText(item.getTask());
+        holder.task.setChecked(item.getStatus());
+
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

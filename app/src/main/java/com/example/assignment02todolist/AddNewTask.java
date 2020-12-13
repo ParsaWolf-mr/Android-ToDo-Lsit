@@ -11,11 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 
-public class AddNewTask extends MainActivity{
+public class AddNewTask extends AppCompatActivity {
 
-    private EditText newTaskText;
+    private EditText newTaskText, title;
     private Button saveButton, deleteButton;
     private DataBankHandler db;
 
@@ -25,7 +26,8 @@ public class AddNewTask extends MainActivity{
         setContentView(R.layout.activity_add_new_task);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        newTaskText = findViewById(R.id.newTask);
+        newTaskText = findViewById(R.id.newTask_description);
+        title = findViewById(R.id.title_newTask);
         saveButton = findViewById(R.id.speicherButton);
         deleteButton = findViewById(R.id.deleteButton);
 
@@ -39,7 +41,7 @@ public class AddNewTask extends MainActivity{
             public void onClick(View v) {
                 TaskClass newTask = null;
                 try{
-                    newTask = new TaskClass( newTaskText.getText().toString(),false);
+                    newTask = new TaskClass(title.getText().toString() ,newTaskText.getText().toString(),false);
                 }catch (Exception e){
                     // if failed the print an Error
                 }

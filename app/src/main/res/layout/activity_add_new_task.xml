@@ -1,18 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:background="@drawable/border">
 
+        <EditText
+            android:layout_marginTop="40dp"
+            android:id="@+id/title_newTask"
+            android:paddingStart="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:textSize="24sp"
+            android:background="@null"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:paddingStart="15dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/black"
+            android:text="Date"
+            />
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border">
 
     <EditText
-        android:id="@+id/newTask"
+        android:id="@+id/newTask_description"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:hint="New Task"
-        android:gravity="center_horizontal|center_vertical"
+        android:layout_height="150dp"
+        android:paddingStart="15dp"
+        android:hint="task description"
         android:background="@null"/>
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:layout_margin="4dp"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_date"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Label"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:layout_margin="4dp"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_label"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/speicherButton"
@@ -22,19 +84,18 @@
         android:textSize="16sp"
         android:textAllCaps="false"
         android:text="@string/speicherbutton"
-        android:textColor="@android:color/black"
-        android:layout_below="@id/newTask"/>
+        android:textColor="@android:color/black" />
 
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textAllCaps="false"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="1dp"
         android:text="Delete"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:layout_below="@id/newTask"/>
+        android:textSize="16sp" />
 
 
-
-</RelativeLayout>
+</LinearLayout>
