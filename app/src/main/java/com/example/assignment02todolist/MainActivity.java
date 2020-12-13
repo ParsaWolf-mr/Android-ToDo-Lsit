@@ -2,9 +2,13 @@ package com.example.assignment02todolist;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,15 +24,22 @@ public class MainActivity extends AppCompatActivity {
     private ToDoHandler taskHandler;
     private List<TaskClass> tasksList;
     private FloatingActionButton fmb;
+    private ActionBarDrawerToggle mToggle;
+    private DrawerLayout mDrawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         tasksList = new ArrayList<>();
 
         db = new DataBankHandler(MainActivity.this);
+
+        // Drawer
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
 
 
         listOfTasks = findViewById(R.id.listOfTasks);
@@ -36,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         taskHandler = new ToDoHandler(db, this);
         listOfTasks.setAdapter(taskHandler);
         fmb =(FloatingActionButton)  findViewById(R.id.newTask_fabbtn);
-
-
 
         fmb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,8 +56,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        mDrawerLayout.addDrawerListener(mToggle);
+        mToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         tasksList = db.getEveryTask();
         taskHandler.setTask(tasksList);
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(mToggle.onOptionsItemSelected(item)){
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

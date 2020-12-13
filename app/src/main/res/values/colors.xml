@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black_transparent">#B2000000</color>
     <color name="lovely_blue">#FF2BCDF6</color>
+    <color name="colorPrimary">#795548</color>
+    <color name="colorPrimaryDark">#5D4037</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="darkgray">#6c6c6c</color>
 </resources>

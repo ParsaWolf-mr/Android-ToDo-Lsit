@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto">
-
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/wallpapermenu">
 
     <TextView
         android:id="@+id/titleText"
@@ -20,13 +21,36 @@
         android:layout_marginBottom="20dp"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listOfTasks"
+
+    <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/titleText"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:nestedScrollingEnabled="true"/>
+        android:id="@+id/drawer"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listOfTasks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/titleText"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:nestedScrollingEnabled="true"/>
+
+        <com.google.android.material.navigation.NavigationView
+            app:headerLayout="@layout/header"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:itemTextColor="@color/darkgray"
+            app:itemIconTint="@color/darkgray"
+            app:menu="@menu/drawermenu"
+            android:layout_gravity = "start">
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 
     <com.github.clans.fab.FloatingActionMenu
@@ -87,10 +111,5 @@
 
 
     </com.github.clans.fab.FloatingActionMenu>
-
-
-
-
-
 
 </RelativeLayout>
