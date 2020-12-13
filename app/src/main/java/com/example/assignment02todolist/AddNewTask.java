@@ -4,13 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -25,6 +24,13 @@ public class AddNewTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_task);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+
+
+        if(actionBar != null){
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.mygradient));
+        }
 
         newTaskText = findViewById(R.id.newTask_description);
         title = findViewById(R.id.title_newTask);

@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -34,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         tasksList = new ArrayList<>();
+
+        ActionBar actionBar = getSupportActionBar();
+
+
+        if(actionBar != null){
+            actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.mygradient));
+        }
 
         db = new DataBankHandler(MainActivity.this);
 

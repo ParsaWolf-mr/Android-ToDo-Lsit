@@ -6,19 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/wallpapermenu">
+    android:background="@drawable/background">
 
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="List of Taks"
-        android:textSize="24sp"
-        android:textColor="@color/black"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"/>
 
 
 
@@ -27,6 +16,18 @@
         android:id="@+id/drawer"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="List of Taks"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
 
 
 
@@ -61,9 +62,9 @@
         android:layout_margin="16dp"
         fab:menu_animationDelayPerItem="55"
         fab:menu_buttonSpacing ="0dp"
-        fab:menu_colorNormal="#FF7A50"
+        fab:menu_colorNormal="#E86338"
         app:menu_colorRipple="#99d4d4d4"
-        app:menu_colorPressed="#5C3021"
+        app:menu_colorPressed="#EFE277"
         app:menu_icon="@drawable/fab_add"
         app:menu_fab_size="normal"
         app:menu_labels_colorNormal="#333"
@@ -93,6 +94,7 @@
             android:layout_height="wrap_content"
             app:fab_label="edit Task"
             android:src="@drawable/ic_pen"
+            app:fab_colorNormal="@color/gold"
             />
 
         <com.github.clans.fab.FloatingActionButton
@@ -107,7 +109,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_label="new Task"
-            android:src="@drawable/ic_baseline_add_task_24"/>
+            android:src="@drawable/ic_baseline_add_task_24"
+            app:fab_colorNormal="@color/gold"/>
 
 
     </com.github.clans.fab.FloatingActionMenu>
