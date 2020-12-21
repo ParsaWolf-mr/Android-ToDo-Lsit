@@ -2,10 +2,9 @@ package com.example.assignment02todolist;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,21 +28,25 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        tasksList = new ArrayList<>();
-
         ActionBar actionBar = getSupportActionBar();
 
+        tasksList = new ArrayList<>();
 
         if(actionBar != null){
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.mygradient));
         }
 
         db = new DataBankHandler(MainActivity.this);
+
+
 
         // Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -74,12 +77,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
 }

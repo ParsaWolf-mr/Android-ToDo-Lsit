@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AddNewTask extends AppCompatActivity {
 
-    private EditText newTaskText, title;
+    private EditText taskDescription, title;
     private Button saveButton, deleteButton;
     private DataBankHandler db;
 
@@ -32,10 +32,12 @@ public class AddNewTask extends AppCompatActivity {
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.mygradient));
         }
 
-        newTaskText = findViewById(R.id.newTask_description);
-        title = findViewById(R.id.title_newTask);
+        taskDescription = findViewById(R.id.taslDescription);
+        title = findViewById(R.id.newTaskTitle);
         saveButton = findViewById(R.id.speicherButton);
         deleteButton = findViewById(R.id.deleteButton);
+
+        // getting the id of card View
 
         saveButton.setEnabled(false);
         deleteButton.setEnabled(false);
@@ -47,7 +49,7 @@ public class AddNewTask extends AppCompatActivity {
             public void onClick(View v) {
                 TaskClass newTask = null;
                 try{
-                    newTask = new TaskClass(title.getText().toString() ,newTaskText.getText().toString(),false);
+                    newTask = new TaskClass(title.getText().toString() , title.getText().toString(),false);
                 }catch (Exception e){
                     // if failed the print an Error
                 }
@@ -80,11 +82,11 @@ public class AddNewTask extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                saveButton.setEnabled(newTaskText.getText().length()>0);
-                deleteButton.setEnabled(newTaskText.getText().length()>0);
+                saveButton.setEnabled(title.getText().length()>0);
+                deleteButton.setEnabled(title.getText().length()>0);
             }
         };
-        newTaskText.addTextChangedListener(textWatcher);
+        title.addTextChangedListener(textWatcher);
     }
 
 }

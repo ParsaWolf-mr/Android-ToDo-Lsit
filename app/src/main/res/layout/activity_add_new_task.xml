@@ -12,7 +12,7 @@
 
         <EditText
             android:layout_marginTop="40dp"
-            android:id="@+id/title_newTask"
+            android:id="@+id/newTaskTitle"
             android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
     android:background="@drawable/border">
 
     <EditText
-        android:id="@+id/newTask_description"
+        android:id="@+id/taslDescription"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:paddingStart="15dp"

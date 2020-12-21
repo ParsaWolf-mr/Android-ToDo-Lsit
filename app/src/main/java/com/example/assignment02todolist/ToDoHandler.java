@@ -1,7 +1,6 @@
 package com.example.assignment02todolist;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -58,6 +56,19 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
         TextView taskText;
         MyViewHolder(View view){
             super(view);
+
+            // Setting the on Click listener here
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // creating an Intent
+                    Intent intent = new Intent(v.getContext(), AddNewTask.class);
+                    intent.putExtra("id", v.getId());
+                     v.getContext().startActivity(intent);
+                }
+            });
+
+
             task = view.findViewById(R.id.checkbox);
             taskText = view.findViewById(R.id.task_layout_text);
         }

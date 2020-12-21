@@ -19,6 +19,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     private static final String ID = "ID";
     private static final String TASK = "TASK";
     private static final String STATUS = "STATUS";
+    private static final String DESCRIPTION  = "DESCRIPTION";
 
     public DataBankHandler(@Nullable Context context) {
         super(context, TODO_TABLE, null, 1);
@@ -27,7 +28,8 @@ public class DataBankHandler  extends SQLiteOpenHelper {
 
     @Override  // create Table and execute the query
     public void onCreate(SQLiteDatabase db) {
-        String queryString = "CREATE TABLE " + TODO_TABLE + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + TASK + " TEXT, " + STATUS + " INTEGER)";
+        String queryString = "CREATE TABLE " + TODO_TABLE + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + TASK + " TEXT, " + DESCRIPTION + " TEXT, " + STATUS + " INTEGER)";
         db.execSQL(queryString);
     }
 

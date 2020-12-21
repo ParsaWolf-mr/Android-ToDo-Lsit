@@ -7,6 +7,7 @@
     android:padding="20dp">
 
     <ImageView
+        android:id="@+id/profilImage"
         android:src="@drawable/facegirls"
         android:layout_width="75dp"
         android:layout_height="75dp"/>
