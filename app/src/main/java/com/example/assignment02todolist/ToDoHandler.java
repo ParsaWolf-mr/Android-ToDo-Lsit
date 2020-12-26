@@ -1,5 +1,6 @@
 package com.example.assignment02todolist;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,6 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
             super(view);
 
             // Setting the on Click listener here
-            /*
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -69,8 +69,6 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
                      v.getContext().startActivity(intent);
                 }
             });
-            */
-
 
 
             task = view.findViewById(R.id.checkbox);
