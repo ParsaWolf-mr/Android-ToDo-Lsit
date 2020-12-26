@@ -1,17 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EasyDo</string>
-    <string name="speicherbutton">Speichern</string>
+    <string name="speicherbutton">Save</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="Title">Title</string>
     <string name="Date">Date</string>
-    <string name="task_description">task description</string>
+    <string name="task_description">Task Description</string>
     <string name="Lable">Lable</string>
     <string name="delete">Delete</string>
-    <string name="list_of_string">List of Taks</string>
+    <string name="list_of_string">List of Tasks</string>
     <string name="edit_task">edit Task</string>
-    <string name="delete_task">delete Task</string>
-    <string name="new_task">new Task</string>
+    <string name="delete_task">Delete Task</string>
+    <string name="new_task">New Task</string>
     <string name="easy_do">EasyDo</string>
     <string name="welcome">Welcome</string>
     <string name="username">Sarrah Eren</string>

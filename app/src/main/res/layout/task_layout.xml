@@ -32,7 +32,7 @@
             android:paddingStart="10dp"
             android:textSize="16sp"
             android:layout_centerVertical="true"
-            tool:text="Tasks"
+            tool:text="@string/tasks"
             android:textColor="@color/black"/>
     </LinearLayout>
 

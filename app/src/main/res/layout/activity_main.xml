@@ -8,9 +8,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background">
 
-
-
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:layout_width="match_parent"
         android:id="@+id/drawer"
@@ -22,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="List of Taks"
+            android:text="@string/list_of_string"
             android:textSize="24sp"
             android:textColor="@color/black"
             android:layout_marginStart="20dp"
@@ -92,7 +89,7 @@
             android:id="@+id/edit_fabbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="edit Task"
+            app:fab_label="@string/edit_task"
             android:src="@drawable/ic_pen"
             app:fab_colorNormal="@color/gold"
             />
@@ -101,14 +98,14 @@
             android:id="@+id/delete_fabbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="delete Task"
+            app:fab_label="@string/delete_task"
             android:src="@drawable/ic_delete"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/newTask_fabbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_label="new Task"
+            app:fab_label="@string/new_task"
             android:src="@drawable/ic_baseline_add_task_24"
             app:fab_colorNormal="@color/gold"/>
 

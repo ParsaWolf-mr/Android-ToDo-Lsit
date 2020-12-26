@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasyDo</string>
+    <string name="open">Ouvert</string>
+    <string name="speicherbutton">Sauver</string>
+    <string name="close">Fermer</string>
+    <string name="Title">Titre</string>
+    <string name="Date">Date</string>
+    <string name="task_description">Description de la tâche</string>
+    <string name="Lable">Étiquette</string>
+    <string name="list_of_string">Liste des tâches</string>
+    <string name="delete_task">Supprimer la tâche</string>
+    <string name="new_task">Nouvelle tâche</string>
+    <string name="welcome">Bienvenue</string>
+    <string name="tasks">Tâches</string>
+    <string name="delete">Effacer</string>
+    <string name="edit_task">Modifier la tâche</string>
+    <string name="easy_do">EasyDo</string>
+    <string name="username">Sarrah Eren</string>
+    <string name="email">SarrahEren@gamil.com</string>
+</resources>

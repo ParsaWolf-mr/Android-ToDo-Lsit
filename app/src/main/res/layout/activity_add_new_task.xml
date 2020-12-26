@@ -16,7 +16,7 @@
             android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Title"
+            android:hint="@string/Title"
             android:textSize="24sp"
             android:background="@null"/>
 
@@ -27,7 +27,7 @@
             android:paddingStart="15dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
-            android:text="Date"
+            android:text="@string/Date"
             />
     </LinearLayout>
 
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:paddingStart="15dp"
-        android:hint="task description"
+        android:hint="@string/task_description"
         android:background="@null"/>
 </LinearLayout>
 
@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Date"
+            android:text="@string/Date"
             android:textSize="24sp"
             android:textColor="@color/black"
             android:layout_margin="4dp"
@@ -67,7 +67,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Label"
+            android:text="@string/Lable"
             android:textSize="24sp"
             android:textColor="@color/black"
             android:layout_margin="4dp"
@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginTop="1dp"
-        android:text="Delete"
+        android:text="@string/delete"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="16sp" />

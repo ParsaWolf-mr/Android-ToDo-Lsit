@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/arizonia"
-            android:text="EasyDo"
+            android:text="@string/easy_do"
             android:textColor="@color/white"
             android:textSize="80sp" />
     </RelativeLayout>
@@ -95,7 +95,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="50dp"
                 android:fontFamily="@font/arizonia"
-                android:text="Welcome"
+                android:text="@string/welcome"
                 android:textColor="#8A7676"
                 android:textSize="50sp" />
 

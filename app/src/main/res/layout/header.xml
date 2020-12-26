@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sarrah Eren"
+        android:text="@string/username"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginTop="5dp"/>
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SarrahEren@gamil.com"
+        android:text="@string/email"
         android:textColor="@color/white"/>
 
 
