@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -17,6 +18,7 @@ public class AddNewTask extends AppCompatActivity {
 
     private EditText taskDescription, title;
     private Button saveButton, deleteButton;
+    private TextView tvDate;
     private DataBankHandler db;
 
     @Override
@@ -33,6 +35,7 @@ public class AddNewTask extends AppCompatActivity {
         }
 
         taskDescription = findViewById(R.id.taslDescription);
+        tvDate = findViewById(R.id.tv_date);
         title = findViewById(R.id.newTaskTitle);
         saveButton = findViewById(R.id.speicherButton);
         deleteButton = findViewById(R.id.deleteButton);
@@ -41,6 +44,15 @@ public class AddNewTask extends AppCompatActivity {
 
         saveButton.setEnabled(false);
         deleteButton.setEnabled(false);
+
+        // Date Clickable
+        tvDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inten =  new Intent(AddNewTask.this, Activity2.class);
+                startActivity(inten);
+            }
+        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
 
