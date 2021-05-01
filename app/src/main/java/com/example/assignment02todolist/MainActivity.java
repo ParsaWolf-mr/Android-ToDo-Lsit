@@ -1,7 +1,12 @@
 package com.example.assignment02todolist;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -122,7 +127,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 });
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
+                break;
+            case R.id.search:
+                notifyConfiguration();
+
         }
         return  false;
+    }
+
+
+    private void createNotificationChangel(){
+
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+            CharSequence name = "EasyDoChannel";
+            String description = "Channel for EasyDo Reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("notifyEasyDo", name, importance);
+            channel.setDescription(description);
+
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    public void notifyConfiguration(){
+
+        Toast.makeText(this, "Reminder set!", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(MainActivity.this, ReminderBroadcast.class);
+        PendingIntent pendingIntent =PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
+
+        AlarmManager alarmManager =(AlarmManager) getSystemService(ALARM_SERVICE);
+
+        long timeAtButtonclick = System.currentTimeMillis();
+
+        long tenSecondsInMillis = 1000 * 10;
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonclick + tenSecondsInMillis, pendingIntent);
+
     }
 }
