@@ -44,7 +44,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
         getWriteAbel();
         ContentValues row = new ContentValues();
 
-        row.put(TASK , newTask.getTask());
+        row.put(TASK , newTask.getTaskDescription());
         row.put(STATUS, 0);
         long insert = db.insert(TODO_TABLE, null,row);
         if (insert == 1){
@@ -103,7 +103,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
             do{
                 TaskClass task = new TaskClass();
                 task.setId(cursor.getInt(0));
-                task.setTask(cursor.getString(1));
+                task.setTaskDescription(cursor.getString(1));
                 task.setStatus(cursor.getInt(2)==1? true: false);
 
                 listOfTasks.add(task);

@@ -19,7 +19,9 @@ public class AddNewTask extends AppCompatActivity {
     private EditText taskDescription, title;
     private Button saveButton, deleteButton;
     private TextView tvDate;
-    private DataBankHandler db;
+    private static DataBankHandler db;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,12 @@ public class AddNewTask extends AppCompatActivity {
         deleteButton = findViewById(R.id.deleteButton);
 
         // getting the id of card View
+        String titleStr = getIntent().getStringExtra("title");
+        String descriptionStr = getIntent().getStringExtra("task");
+        int idstr  = getIntent().getIntExtra("id", 0);
+
+        taskDescription.setText(titleStr);
+        title.setText(descriptionStr);
 
         saveButton.setEnabled(false);
         deleteButton.setEnabled(false);
@@ -61,7 +69,7 @@ public class AddNewTask extends AppCompatActivity {
             public void onClick(View v) {
                 TaskClass newTask = null;
                 try{
-                    newTask = new TaskClass(title.getText().toString() , title.getText().toString(),false);
+                    newTask = new TaskClass(title.getText().toString() , taskDescription.getText().toString(),false);
                 }catch (Exception e){
                     // if failed the print an Error
                 }

@@ -36,9 +36,21 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         db.getWriteAbel();
         TaskClass item = todoList.get(position);
-        holder.taskText.setText(item.getTask());
+        holder.taskText.setText(item.getTaskDescription());
         holder.task.setChecked(item.getStatus());
 
+        // Setting the on Click listener here
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // creating an Intent
+                Intent intent = new Intent(v.getContext(), AddNewTask.class);
+                intent.putExtra("id", item.getId());
+                intent.putExtra("title", item.getTaskTitle());
+                intent.putExtra("task", item.getTaskDescription());
+                v.getContext().startActivity(intent);
+            }
+        });
 
         holder.task.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -56,21 +68,10 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         CheckBox task;
         TextView taskText;
+        View view;
         MyViewHolder(View view){
             super(view);
-
-            // Setting the on Click listener here
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // creating an Intent
-                    Intent intent = new Intent(v.getContext(), AddNewTask.class);
-                    intent.putExtra("id", v.getId());
-                     v.getContext().startActivity(intent);
-                }
-            });
-
-
+            this.view = view;
             task = view.findViewById(R.id.checkbox);
             taskText = view.findViewById(R.id.task_layout_text);
         }
