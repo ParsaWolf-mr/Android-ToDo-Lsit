@@ -18,7 +18,7 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
 
     private  MainActivity mainActivity;
     private List<TaskClass> todoList;
-    private DataBankHandler db;
+    private static DataBankHandler db;
     private AddNewTask addNewTask;
 
 
@@ -28,7 +28,8 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
         addNewTask = new AddNewTask();
         addNewTask.setDB(db);
     }
-
+    public ToDoHandler(DataBankHandler db){
+    }
 
 
     @NonNull
@@ -41,6 +42,7 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         db.getWriteAbel();
+        boolean update = true;
         TaskClass item = todoList.get(position);
         holder.taskText.setText(item.getTaskTitle());
         holder.task.setChecked(item.getStatus());
@@ -52,8 +54,8 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
                 // creating an Intent
                 Intent intent = new Intent(v.getContext(), AddNewTask.class);
                 intent.putExtra("id", item.getId());
-                //intent.putExtra("title", item.getTaskTitle());
-//                intent.putExtra("date", item.getDate());
+                intent.putExtra("position", holder.getAdapterPosition());
+                intent.putExtra("update",update);
                 v.getContext().startActivity(intent);
             }
         });
@@ -89,5 +91,12 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
         this.todoList = todoList;
         Collections.reverse(todoList);
         notifyDataSetChanged();
+    }
+
+    public void deleteItem(int position){
+        TaskClass item = todoList.get(position);
+        todoList.remove(position);
+        notifyItemRemoved(position);
+
     }
 }

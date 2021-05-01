@@ -1,6 +1,7 @@
 package com.example.assignment02todolist;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -28,11 +30,11 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
     private static DataBankHandler db;
     private String currentDateString;
     private TaskClass taskClass;
+    private ToDoHandler todoHandler;
 
     public void setDB(DataBankHandler db){
         this.db = db;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +57,17 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
         deleteButton = findViewById(R.id.deleteButton);
 
         // getting the id of card View
-        //String titleStr = getIntent().getStringExtra("title");
-        //String descriptionStr = getIntent().getStringExtra("task");
         int idstr= getIntent().getIntExtra("id", 0);
-        //String dateStr = getIntent().getStringExtra("date");
+        int positionStr = getIntent().getIntExtra("position", 0);
+        boolean update = getIntent().getBooleanExtra("update", false);
+
         taskClass = new TaskClass();
         taskClass = db.getOneTask(idstr);
-
         taskDescription.setText(taskClass.getTaskDescription());
         title.setText(taskClass.getTaskTitle());
         dateTextView.setText(taskClass.getDate());
 
         saveButton.setEnabled(false);
-        deleteButton.setEnabled(false);
 
         // Date Clickable
         tvDate.setOnClickListener(new View.OnClickListener() {
@@ -83,15 +83,20 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
             Intent intent = new Intent(AddNewTask.this, MainActivity.class);
             @Override
             public void onClick(View v) {
-                TaskClass newTask = null;
+
+                boolean success;
                 try{
-                    newTask = new TaskClass(title.getText().toString() , taskDescription.getText().toString(),false, currentDateString);
+                    if(update){
+                           db.updateTask(taskClass.getId(), taskClass.getTaskTitle(), taskClass.getTaskDescription(), taskClass.getDate());
+                           todoHandler = new ToDoHandler(db);
+                    }else {
+                        taskClass = new TaskClass(title.getText().toString(), taskDescription.getText().toString(), false, currentDateString);
+                        success = db.addOnDataBase(taskClass);
+                        Toast.makeText(AddNewTask.this, "Success " + success , Toast.LENGTH_SHORT).show();
+                    }
                 }catch (Exception e){
                     // if failed the print an Error
                 }
-                db = new DataBankHandler(AddNewTask.this);
-                boolean success = db.addOnDataBase(newTask);
-                Toast.makeText(AddNewTask.this, "Success " + success , Toast.LENGTH_SHORT).show();
 
                 startActivity(intent);
             }
@@ -100,17 +105,35 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
         deleteButton.setOnClickListener(new View.OnClickListener() {    // need to fix
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddNewTask.this, MainActivity.class);
-                db = new DataBankHandler(AddNewTask.this);
-                // ToDo
-                startActivity(intent);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddNewTask.this);
+                alertDialogBuilder.setTitle("Confirm Exit ..!!");
+                alertDialogBuilder.setMessage("Are you sure u want to exit");
+                alertDialogBuilder.setCancelable(false);
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        db.deleteTask(taskClass.getId());
+                        startActivity(new Intent(AddNewTask.this, MainActivity.class));
+                        Toast.makeText(AddNewTask.this, "delete succesfull" , Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(AddNewTask.this, "you clicked on cancel", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
         });
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                deleteButton.setEnabled(title.getText().length()>0);
             }
 
             @Override
@@ -120,7 +143,6 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
             @Override
             public void afterTextChanged(Editable s) {
                 saveButton.setEnabled(title.getText().length()>0);
-                deleteButton.setEnabled(title.getText().length()>0);
             }
         };
         title.addTextChangedListener(textWatcher);
@@ -133,5 +155,6 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        dateTextView.setText(currentDateString);
     }
 }

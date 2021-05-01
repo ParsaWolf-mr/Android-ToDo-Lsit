@@ -117,11 +117,12 @@ public class DataBankHandler  extends SQLiteOpenHelper {
         return listOfTasks;
     }
 
-    public void updateTask(int id, String task){
-        getWriteAbel();
-
+    public void updateTask(int id, String task, String description, String date){
         ContentValues row = new ContentValues();
+        row.put(ID, id);
         row.put(TASK, task );
+        row.put(DESCRIPTION, description );
+        row.put(DATE, date );
         db.update(TODO_TABLE, row, ID+ "=?", new String[] {String.valueOf(id)});
     }
 
