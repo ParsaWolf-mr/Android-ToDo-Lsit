@@ -30,7 +30,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     @Override  // create Table and execute the query
     public void onCreate(SQLiteDatabase db) {
         String queryString = "CREATE TABLE " + TODO_TABLE + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TASK + " TEXT, " + DESCRIPTION + " TEXT, " + STATUS + " INTEGER, "+ DATE +" TEXT)";
+                + TASK + " TEXT, " + DESCRIPTION + " TEXT, "  + STATUS + " INTEGER, " + DATE + " TEXT )";
         db.execSQL(queryString);
     }
 
@@ -47,8 +47,9 @@ public class DataBankHandler  extends SQLiteOpenHelper {
 
         row.put(TASK , newTask.getTaskTitle());
         row.put(DESCRIPTION, newTask.getTaskDescription());
-        row.put(DATE, newTask.getDate());
         row.put(STATUS, 0);
+        row.put(DATE, newTask.getDate());
+
         long insert = db.insert(TODO_TABLE, null,row);
         if (insert == 1){
             return false;
@@ -66,7 +67,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     }
 
     public void updateStauts(int id, boolean status){
-        getWriteAbel();;
+        getWriteAbel();
 
         ContentValues row = new ContentValues();
         row.put(STATUS, status);
@@ -125,6 +126,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
         row.put(DATE, date );
         db.update(TODO_TABLE, row, ID+ "=?", new String[] {String.valueOf(id)});
     }
+
 
     public TaskClass getOneTask(int id){
         getWriteAbel();

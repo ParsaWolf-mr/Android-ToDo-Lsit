@@ -87,10 +87,9 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
                 boolean success;
                 try{
                     if(update){
-                           db.updateTask(taskClass.getId(), taskClass.getTaskTitle(), taskClass.getTaskDescription(), taskClass.getDate());
-                           todoHandler = new ToDoHandler(db);
+                           db.updateTask(taskClass.getId(), title.getText().toString(), taskDescription.getText().toString(), dateTextView.getText().toString());
                     }else {
-                        taskClass = new TaskClass(title.getText().toString(), taskDescription.getText().toString(), false, currentDateString);
+                        taskClass = new TaskClass(title.getText().toString(), taskDescription.getText().toString(), false, dateTextView.getText().toString());
                         success = db.addOnDataBase(taskClass);
                         Toast.makeText(AddNewTask.this, "Success " + success , Toast.LENGTH_SHORT).show();
                     }
@@ -143,9 +142,11 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
             @Override
             public void afterTextChanged(Editable s) {
                 saveButton.setEnabled(title.getText().length()>0);
+                saveButton.setEnabled(taskDescription.getText().length()>0);
             }
         };
         title.addTextChangedListener(textWatcher);
+        taskDescription.addTextChangedListener(textWatcher);
     }
 
     @Override
@@ -154,7 +155,7 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+        currentDateString = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         dateTextView.setText(currentDateString);
     }
 }
