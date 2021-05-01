@@ -48,6 +48,7 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
                 intent.putExtra("id", item.getId());
                 intent.putExtra("title", item.getTaskTitle());
                 intent.putExtra("task", item.getTaskDescription());
+                intent.putExtra("date", item.getDate());
                 v.getContext().startActivity(intent);
             }
         });

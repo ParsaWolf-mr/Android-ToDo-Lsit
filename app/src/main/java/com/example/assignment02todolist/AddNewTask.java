@@ -1,25 +1,32 @@
 package com.example.assignment02todolist;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 
 
-public class AddNewTask extends AppCompatActivity {
+public class AddNewTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private EditText taskDescription, title;
     private Button saveButton, deleteButton;
-    private TextView tvDate;
+    private TextView tvDate, dateTextEdit;
     private static DataBankHandler db;
+    private String currentDateString;
 
 
 
@@ -38,6 +45,7 @@ public class AddNewTask extends AppCompatActivity {
 
         taskDescription = findViewById(R.id.taslDescription);
         tvDate = findViewById(R.id.tv_date);
+        dateTextEdit = findViewById(R.id.date_shower);
         title = findViewById(R.id.newTaskTitle);
         saveButton = findViewById(R.id.speicherButton);
         deleteButton = findViewById(R.id.deleteButton);
@@ -46,10 +54,11 @@ public class AddNewTask extends AppCompatActivity {
         String titleStr = getIntent().getStringExtra("title");
         String descriptionStr = getIntent().getStringExtra("task");
         int idstr  = getIntent().getIntExtra("id", 0);
+        String dateStr = getIntent().getStringExtra("date");
 
         taskDescription.setText(titleStr);
         title.setText(descriptionStr);
-
+        dateTextEdit.setText(dateStr);
         saveButton.setEnabled(false);
         deleteButton.setEnabled(false);
 
@@ -57,8 +66,8 @@ public class AddNewTask extends AppCompatActivity {
         tvDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inten =  new Intent(AddNewTask.this, Activity2.class);
-                startActivity(inten);
+                DialogFragment datePicker = new DateBankFragment1();
+                datePicker.show(getSupportFragmentManager(), "date picker");
             }
         });
 
@@ -69,7 +78,7 @@ public class AddNewTask extends AppCompatActivity {
             public void onClick(View v) {
                 TaskClass newTask = null;
                 try{
-                    newTask = new TaskClass(title.getText().toString() , taskDescription.getText().toString(),false);
+                    newTask = new TaskClass(title.getText().toString() , taskDescription.getText().toString(),false, "");
                 }catch (Exception e){
                     // if failed the print an Error
                 }
@@ -109,4 +118,12 @@ public class AddNewTask extends AppCompatActivity {
         title.addTextChangedListener(textWatcher);
     }
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
+    }
 }

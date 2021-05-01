@@ -5,6 +5,15 @@ public class TaskClass {
     private String taskDescription, taskTitle ;
     private int id;
     private boolean status;
+    private String Date;
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
 
     public String getTaskTitle() {
         return taskTitle;
@@ -14,7 +23,7 @@ public class TaskClass {
         this.taskTitle = taskTitle;
     }
 
-    public TaskClass(String taskTitle, String taskDescription, boolean status) {
+    public TaskClass(String taskTitle, String taskDescription, boolean status, String date) {
         this.taskTitle= taskTitle;
         this.taskDescription = taskDescription;
         this.status = status;

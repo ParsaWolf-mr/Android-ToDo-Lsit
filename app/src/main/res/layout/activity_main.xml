@@ -51,65 +51,18 @@
     </androidx.drawerlayout.widget.DrawerLayout>
 
 
-    <com.github.clans.fab.FloatingActionMenu
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/newTask_fabbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        app:fab_label="@string/new_task"
+        android:src="@drawable/fab_add"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
-        fab:menu_animationDelayPerItem="55"
-        fab:menu_buttonSpacing ="0dp"
-        fab:menu_colorNormal="#E86338"
-        app:menu_colorRipple="#99d4d4d4"
-        app:menu_colorPressed="#EFE277"
-        app:menu_icon="@drawable/fab_add"
-        app:menu_fab_size="normal"
-        app:menu_labels_colorNormal="#333"
-        app:menu_labels_colorPressed="#444"
-        app:menu_labels_colorRipple="#66efecec"
-        app:menu_labels_cornerRadius="3dp"
-        app:menu_labels_ellipsize="none"
-        app:menu_labels_hideAnimation="@anim/fab_slide_in_from_right"
-        app:menu_labels_maxLines="-1"
-        android:padding="8dp"
-        app:menu_labels_position="left"
-        app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
-        app:menu_labels_showShadow="true"
-        app:menu_labels_singleLine="false"
-        app:menu_labels_textColor="#f2f1f1"
-        app:menu_labels_textSize="15sp"
-        app:menu_openDirection="up"
-        app:menu_shadowColor="#66aff198"
-        app:menu_shadowRadius="4dp"
-        app:menu_shadowXOffset="1dp"
-        app:menu_shadowYOffset="4dp"
-        app:menu_showShadow="true">
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/edit_fabbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="@string/edit_task"
-            android:src="@drawable/ic_pen"
-            app:fab_colorNormal="@color/gold"
-            />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/delete_fabbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="@string/delete_task"
-            android:src="@drawable/ic_delete"/>
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/newTask_fabbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_label="@string/new_task"
-            android:src="@drawable/ic_baseline_add_task_24"
-            app:fab_colorNormal="@color/gold"/>
+        android:layout_alignParentRight="true"
+        android:layout_margin="25dp"
+        app:fab_colorNormal="@color/gold"/>
 
 
-    </com.github.clans.fab.FloatingActionMenu>
+
 
 </RelativeLayout>

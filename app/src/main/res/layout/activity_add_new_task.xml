@@ -66,14 +66,14 @@
             />
 
         <TextView
+            android:id="@+id/date_shower"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Lable"
             android:textSize="24sp"
             android:textColor="@color/black"
             android:layout_margin="4dp"
             android:drawablePadding="10dp"
-            android:drawableLeft="@drawable/ic_label"/>
+         />
 
     </LinearLayout>
 
