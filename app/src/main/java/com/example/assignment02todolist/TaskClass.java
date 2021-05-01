@@ -5,14 +5,14 @@ public class TaskClass {
     private String taskDescription, taskTitle ;
     private int id;
     private boolean status;
-    private String Date;
+    private String date;
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
     public String getTaskTitle() {

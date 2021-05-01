@@ -19,11 +19,17 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
     private  MainActivity mainActivity;
     private List<TaskClass> todoList;
     private DataBankHandler db;
+    private AddNewTask addNewTask;
+
 
     public ToDoHandler(DataBankHandler db, MainActivity activity){
         this.mainActivity = activity;
         this.db = db;
+        addNewTask = new AddNewTask();
+        addNewTask.setDB(db);
     }
+
+
 
     @NonNull
     @Override
@@ -46,9 +52,8 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
                 // creating an Intent
                 Intent intent = new Intent(v.getContext(), AddNewTask.class);
                 intent.putExtra("id", item.getId());
-                intent.putExtra("title", item.getTaskTitle());
-                intent.putExtra("task", item.getTaskDescription());
-                intent.putExtra("date", item.getDate());
+                //intent.putExtra("title", item.getTaskTitle());
+//                intent.putExtra("date", item.getDate());
                 v.getContext().startActivity(intent);
             }
         });

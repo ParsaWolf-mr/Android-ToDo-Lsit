@@ -30,7 +30,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     @Override  // create Table and execute the query
     public void onCreate(SQLiteDatabase db) {
         String queryString = "CREATE TABLE " + TODO_TABLE + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TASK + " TEXT, " + DESCRIPTION + " TEXT, " + STATUS + " INTEGER, "+ DATE +" DATE)";
+                + TASK + " TEXT, " + DESCRIPTION + " TEXT, " + STATUS + " INTEGER, "+ DATE +" TEXT)";
         db.execSQL(queryString);
     }
 
@@ -46,6 +46,8 @@ public class DataBankHandler  extends SQLiteOpenHelper {
         ContentValues row = new ContentValues();
 
         row.put(TASK , newTask.getTaskTitle());
+        row.put(DESCRIPTION, newTask.getTaskDescription());
+        row.put(DATE, newTask.getDate());
         row.put(STATUS, 0);
         long insert = db.insert(TODO_TABLE, null,row);
         if (insert == 1){
@@ -54,6 +56,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
             return true;
         }
     }
+
     public void getWriteAbel(){
         db = this.getWritableDatabase();
     }
@@ -67,9 +70,6 @@ public class DataBankHandler  extends SQLiteOpenHelper {
 
         ContentValues row = new ContentValues();
         row.put(STATUS, status);
-        /*String updateQuery = "UPDATE TABLE " + TODO_TABLE + " SET "
-                + STATUS + " = " + " true " + " WHERE " + ID + " = " + id;
-        Cursor cursor = db.rawQuery(updateQuery, null);  */
         db.update(TODO_TABLE, row, ID + "=?", new String[]{String.valueOf(id)});
     }
 
@@ -104,8 +104,10 @@ public class DataBankHandler  extends SQLiteOpenHelper {
             do{
                 TaskClass task = new TaskClass();
                 task.setId(cursor.getInt(0));
-                task.setTaskDescription(cursor.getString(1));
-                task.setStatus(cursor.getInt(2)==1? true: false);
+                task.setTaskTitle(cursor.getString(1));
+                task.setTaskDescription(cursor.getString(2));
+                task.setStatus(cursor.getInt(3)==1? true: false);
+                task.setDate(cursor.getString(4));
 
                 listOfTasks.add(task);
             }while(cursor.moveToNext());
@@ -121,5 +123,22 @@ public class DataBankHandler  extends SQLiteOpenHelper {
         ContentValues row = new ContentValues();
         row.put(TASK, task );
         db.update(TODO_TABLE, row, ID+ "=?", new String[] {String.valueOf(id)});
+    }
+
+    public TaskClass getOneTask(int id){
+        getWriteAbel();
+        TaskClass task= new TaskClass();
+        String query = "SELECT * FROM " + TODO_TABLE + " WHERE " + ID +" = " + id + " ORDER BY "+ STATUS + " DESC ";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if(cursor.moveToFirst()) {
+            task.setId(cursor.getInt(0));
+            task.setTaskTitle(cursor.getString(1));
+            task.setTaskDescription(cursor.getString(2));
+            task.setStatus(cursor.getInt(3) == 1 ? true : false);
+            task.setDate(cursor.getString(4));
+        }
+        cursor.close();
+        return task;
     }
 }

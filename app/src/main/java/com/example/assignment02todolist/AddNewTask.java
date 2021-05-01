@@ -27,7 +27,11 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
     private TextView tvDate, dateTextEdit;
     private static DataBankHandler db;
     private String currentDateString;
+    private TaskClass taskClass;
 
+    public void setDB(DataBankHandler db){
+        this.db = db;
+    }
 
 
     @Override
@@ -45,20 +49,23 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
 
         taskDescription = findViewById(R.id.taslDescription);
         tvDate = findViewById(R.id.tv_date);
-        dateTextEdit = findViewById(R.id.date_shower);
+        dateTextEdit = findViewById(R.id.tv_date);
         title = findViewById(R.id.newTaskTitle);
         saveButton = findViewById(R.id.speicherButton);
         deleteButton = findViewById(R.id.deleteButton);
 
         // getting the id of card View
-        String titleStr = getIntent().getStringExtra("title");
-        String descriptionStr = getIntent().getStringExtra("task");
-        int idstr  = getIntent().getIntExtra("id", 0);
-        String dateStr = getIntent().getStringExtra("date");
+        //String titleStr = getIntent().getStringExtra("title");
+        //String descriptionStr = getIntent().getStringExtra("task");
+        int idstr= getIntent().getIntExtra("id", 0);
+        //String dateStr = getIntent().getStringExtra("date");
+        taskClass = new TaskClass();
+        taskClass = db.getOneTask(idstr);
 
-        taskDescription.setText(titleStr);
-        title.setText(descriptionStr);
-        dateTextEdit.setText(dateStr);
+        taskDescription.setText(taskClass.getTaskDescription());
+        title.setText(taskClass.getTaskTitle());
+        dateTextEdit.setText(taskClass.getDate());
+
         saveButton.setEnabled(false);
         deleteButton.setEnabled(false);
 
