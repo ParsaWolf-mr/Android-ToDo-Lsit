@@ -24,7 +24,7 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
 
     private EditText taskDescription, title;
     private Button saveButton, deleteButton;
-    private TextView tvDate, dateTextEdit;
+    private TextView tvDate, dateTextView;
     private static DataBankHandler db;
     private String currentDateString;
     private TaskClass taskClass;
@@ -47,10 +47,10 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
             actionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.mygradient));
         }
 
-        taskDescription = findViewById(R.id.taslDescription);
+        taskDescription = findViewById(R.id.task_description_et);
         tvDate = findViewById(R.id.tv_date);
-        dateTextEdit = findViewById(R.id.tv_date);
-        title = findViewById(R.id.newTaskTitle);
+        dateTextView = findViewById(R.id.date_shower_tv);
+        title = findViewById(R.id.task_title_et);
         saveButton = findViewById(R.id.speicherButton);
         deleteButton = findViewById(R.id.deleteButton);
 
@@ -64,7 +64,7 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
 
         taskDescription.setText(taskClass.getTaskDescription());
         title.setText(taskClass.getTaskTitle());
-        dateTextEdit.setText(taskClass.getDate());
+        dateTextView.setText(taskClass.getDate());
 
         saveButton.setEnabled(false);
         deleteButton.setEnabled(false);
@@ -85,7 +85,7 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
             public void onClick(View v) {
                 TaskClass newTask = null;
                 try{
-                    newTask = new TaskClass(title.getText().toString() , taskDescription.getText().toString(),false, "");
+                    newTask = new TaskClass(title.getText().toString() , taskDescription.getText().toString(),false, currentDateString);
                 }catch (Exception e){
                     // if failed the print an Error
                 }
@@ -110,6 +110,7 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                deleteButton.setEnabled(title.getText().length()>0);
             }
 
             @Override

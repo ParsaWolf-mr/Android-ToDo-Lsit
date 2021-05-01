@@ -12,7 +12,7 @@
 
         <EditText
             android:layout_marginTop="40dp"
-            android:id="@+id/newTaskTitle"
+            android:id="@+id/task_title_et"
             android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,6 +21,7 @@
             android:background="@null"/>
 
         <TextView
+            android:id="@+id/date_shower_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"
@@ -37,7 +38,7 @@
     android:background="@drawable/border">
 
     <EditText
-        android:id="@+id/taslDescription"
+        android:id="@+id/task_description_et"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:paddingStart="15dp"

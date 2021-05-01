@@ -42,7 +42,7 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         db.getWriteAbel();
         TaskClass item = todoList.get(position);
-        holder.taskText.setText(item.getTaskDescription());
+        holder.taskText.setText(item.getTaskTitle());
         holder.task.setChecked(item.getStatus());
 
         // Setting the on Click listener here
