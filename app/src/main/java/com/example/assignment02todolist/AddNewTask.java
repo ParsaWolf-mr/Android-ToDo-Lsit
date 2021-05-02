@@ -194,6 +194,7 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
         };
         title.addTextChangedListener(textWatcher);
         taskDescription.addTextChangedListener(textWatcher);
+        tv_time.addTextChangedListener(textWatcher);
     }
 
     @Override

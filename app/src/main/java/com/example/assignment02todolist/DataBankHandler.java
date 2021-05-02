@@ -111,6 +111,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
                 task.setTaskDescription(cursor.getString(2));
                 task.setStatus(cursor.getInt(3)==1? true: false);
                 task.setDate(cursor.getString(4));
+                task.setTime(cursor.getString(5));
 
                 listOfTasks.add(task);
             }while(cursor.moveToNext());
@@ -143,6 +144,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
             task.setTaskDescription(cursor.getString(2));
             task.setStatus(cursor.getInt(3) == 1 ? true : false);
             task.setDate(cursor.getString(4));
+            task.setTime(cursor.getString(5));
         }
         cursor.close();
         return task;
