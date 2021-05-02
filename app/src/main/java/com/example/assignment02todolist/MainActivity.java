@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.clans.fab.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         db = new DataBankHandler(MainActivity.this);
 
-
+        createNotificationChangel();
 
         // Drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -91,6 +92,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         tasksList = db.getEveryTask();
+        /*
+        for(TaskClass item: tasksList){
+            try {
+                notifyConfiguration(item.getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        } */
         taskHandler.setTask(tasksList);
 
     }
@@ -116,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
+                        System.exit(1);
                     }
 
                 });
@@ -128,6 +138,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
                 break;
+            case R.id.search:
+                try {
+                    notifyConfiguration(" ");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
         }
         return  false;
@@ -149,7 +165,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public void notifyConfiguration(){
+    public void notifyConfiguration(String dateStr) throws ParseException {
+        String tempDateStr = dateStr;
+        // creating simple data format
+        //ToDO
+        //SimpleDateFormat sdf= new SimpleDateFormat("hh:mm:ss");
+        //Date date = sdf.parse(tempDateStr);
 
         Toast.makeText(this, "Reminder set!", Toast.LENGTH_LONG).show();
 
@@ -157,12 +178,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         PendingIntent pendingIntent =PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
 
         AlarmManager alarmManager =(AlarmManager) getSystemService(ALARM_SERVICE);
-
-        long timeAtButtonclick = System.currentTimeMillis();
-
-        long tenSecondsInMillis = 1000 * 10;
-
-        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonclick + tenSecondsInMillis, pendingIntent);
+        //long notifyTime= date.getTime();
+        long currentTime = System.currentTimeMillis() + 1000*10;
+        alarmManager.set(AlarmManager.RTC_WAKEUP, currentTime, pendingIntent);
 
     }
 }

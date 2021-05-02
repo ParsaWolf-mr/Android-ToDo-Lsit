@@ -10,7 +10,7 @@ import androidx.core.app.NotificationManagerCompat;
 public class ReminderBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyLemubit")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyEasyDo")
                 .setSmallIcon(R.drawable.ic_baseline_notifications)
                 .setContentTitle("Reminder Easy Do")
                 .setContentText("this task hast reached his limit")

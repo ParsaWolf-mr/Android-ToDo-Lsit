@@ -28,8 +28,6 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
         addNewTask = new AddNewTask();
         addNewTask.setDB(db);
     }
-    public ToDoHandler(DataBankHandler db){
-    }
 
 
     @NonNull
@@ -65,7 +63,6 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     db.updateStauts(item.getId(), true);
-                    mainActivity.notifyConfiguration();
                 }else{
                     db.updateStauts(item.getId(), false);
                 }
@@ -94,10 +91,4 @@ public class ToDoHandler extends RecyclerView.Adapter<ToDoHandler.MyViewHolder> 
         notifyDataSetChanged();
     }
 
-    public void deleteItem(int position){
-        TaskClass item = todoList.get(position);
-        todoList.remove(position);
-        notifyItemRemoved(position);
-
-    }
 }

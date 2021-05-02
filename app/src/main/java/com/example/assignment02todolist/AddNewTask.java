@@ -153,8 +153,8 @@ public class AddNewTask extends AppCompatActivity implements DatePickerDialog.On
             public void onClick(View v) {
 
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(AddNewTask.this);
-                alertDialogBuilder.setTitle("Confirm Exit ..!!");
-                alertDialogBuilder.setMessage("Are you sure u want to exit");
+                alertDialogBuilder.setTitle("Confirm Delete ..!!");
+                alertDialogBuilder.setMessage("Are you sure u want to delete");
                 alertDialogBuilder.setCancelable(false);
                 alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
