@@ -128,15 +128,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
                 break;
-            case R.id.search:
-                notifyConfiguration();
 
         }
         return  false;
     }
 
 
-    private void createNotificationChangel(){
+    public void createNotificationChangel(){
 
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
             CharSequence name = "EasyDoChannel";

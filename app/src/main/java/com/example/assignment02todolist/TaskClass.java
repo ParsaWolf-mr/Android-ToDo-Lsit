@@ -6,6 +6,15 @@ public class TaskClass {
     private int id;
     private boolean status;
     private String date;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getDate() {
         return date;
@@ -23,9 +32,11 @@ public class TaskClass {
         this.taskTitle = taskTitle;
     }
 
-    public TaskClass(String taskTitle, String taskDescription, boolean status, String date) {
+    public TaskClass(String taskTitle, String taskDescription, boolean status, String date, String time) {
         this.taskTitle= taskTitle;
         this.taskDescription = taskDescription;
+        this.date = date;
+        this.time = time;
         this.status = status;
     }
 

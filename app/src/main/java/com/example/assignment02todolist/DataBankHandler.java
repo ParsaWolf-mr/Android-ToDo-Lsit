@@ -21,6 +21,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     private static final String STATUS = "STATUS";
     private static final String DESCRIPTION  = "DESCRIPTION";
     private static final String DATE = "DATE";
+    private static final String TIME = "TIME";
 
     public DataBankHandler(@Nullable Context context) {
         super(context, TODO_TABLE, null, 1);
@@ -30,7 +31,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
     @Override  // create Table and execute the query
     public void onCreate(SQLiteDatabase db) {
         String queryString = "CREATE TABLE " + TODO_TABLE + " ( " + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TASK + " TEXT, " + DESCRIPTION + " TEXT, "  + STATUS + " INTEGER, " + DATE + " TEXT )";
+                + TASK + " TEXT, " + DESCRIPTION + " TEXT, "  + STATUS + " INTEGER, " + DATE + " TEXT, "+ TIME + " TEXT)";
         db.execSQL(queryString);
     }
 
@@ -49,6 +50,7 @@ public class DataBankHandler  extends SQLiteOpenHelper {
         row.put(DESCRIPTION, newTask.getTaskDescription());
         row.put(STATUS, 0);
         row.put(DATE, newTask.getDate());
+        row.put(TIME, newTask.getTime());
 
         long insert = db.insert(TODO_TABLE, null,row);
         if (insert == 1){
@@ -118,12 +120,13 @@ public class DataBankHandler  extends SQLiteOpenHelper {
         return listOfTasks;
     }
 
-    public void updateTask(int id, String task, String description, String date){
+    public void updateTask(int id, String task, String description, String date, String time){
         ContentValues row = new ContentValues();
         row.put(ID, id);
         row.put(TASK, task );
         row.put(DESCRIPTION, description );
         row.put(DATE, date );
+        row.put(TIME, time);
         db.update(TODO_TABLE, row, ID+ "=?", new String[] {String.valueOf(id)});
     }
 

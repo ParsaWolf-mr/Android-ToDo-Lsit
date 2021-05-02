@@ -65,6 +65,17 @@
             android:drawablePadding="10dp"
             android:drawableLeft="@drawable/ic_date"
             />
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:layout_margin="4dp"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_baseline_time"
+            />
 
 
     </LinearLayout>
